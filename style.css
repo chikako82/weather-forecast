@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('images/IMG_4529.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    padding: 20px 70px;
+    color: #fff;
+}
+
+.current-info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.date-container {
+    font-weight: 100;
+}
+
+.date-container .time {
+    font-size: 70px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.date-container #am-pm {
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.date-container .date {
+    font-size: 30px;
+    text-align: center;
+}
+
+.date-container .weather-icon {
+    text-align: center;
+}
+
+.place-container {
+    text-align: left;
+}
+
+.place-container .country {
+    font-size: 25px;
+    font-weight: 100;
+}
+
+.place-container .city {
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.current-info .others {
+    display: flex;
+    flex-direction: column;
+    background: rgba(24,24,27, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.current-info .others .weather-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.current-info .others .weather-item  .weather-item-card {
+    padding-right: 8px;
+}
+
+.weather-item-result {
+    font-weight: 200;
+}
+
+.future-forecast {
+    background: rgba(24,24,27, 0.7);
+    padding: 25px;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    color: #fff;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.future-forecast .today {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.future-forecast .today .today-text {
+    text-align: center;
+}
+
+.future-forecast .today .day {
+    padding: 5px 15px;
+    background: #fff;
+    color: #3c3c44;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.future-forecast .today .temp {
+    font-size: 18px;
+    padding-top: 15px;
+}
+
+.future-forecast .weather-forecast {
+    display: flex;
+}
+
+.weather-forecast .weather-forecast-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    border: 1px dotted #eee;
+    border-radius: 10px;
+    padding: 15px;
+    position: relative;
+    background: rgba(228, 228, 226, 0.7);
+}
+
+.weather-forecast .weather-forecast-item .day {
+    padding: 5px 15px;
+    background: #fff;
+    color: #3c3c44;
+    border-radius: 50px;
+    text-align: center;
+    position: absolute;
+    top: 2px;
+    
+}
+
+.weather-forecast .weather-forecast-item img {
+    align-items: center;
+}
+
+.weather-forecast .weather-forecast-item .temp {
+    font-weight: 200;
+    color: black;
+}
+
+/* レスポンシブル対応730px以下で適応 */
+@media only screen and (max-width:730px) {
+    .container {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+
+    .center {
+        display: flex;
+        align-items: center;
+    }
+
+    .current-info .others {
+        margin-top: 5px;
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    .current-info .others .weather-item  .weather-item-card {
+        padding-right: 3px;
+    }
+
+    .future-forecast {
+        justify-content: start; /*左からスタート */
+        align-items: none;
+        overflow-y: scroll;
+    }
+
+    .future-forecast .today .temp {
+        font-size: 23px;
+    }
+
+    .date-container .time {
+        font-size: 50px;
+    }
+
+    .date-container #am-pm {
+        font-size: 20px;
+    }
+
+    .date-container .date {
+        font-size: 20px;
+    }
+
+    .place-container {
+        margin-top: 15px;
+    }
+
+    .place-container .country {
+        font-size: 20px;
+    }
+    
+    .place-container .city {
+        font-size: 15px;
+    }
+
+    .future-forecast .today .temp {
+        font-size: 15px;
+        padding-top: 10px;
+    }
+
+    .weather-forecast .weather-forecast-item .day {
+        padding: 1px 10px;
+    }
+    
+    .weather-forecast .weather-forecast-item .temp {
+        font-size: 12px;
+        font-weight: 100;
+    }
+}
