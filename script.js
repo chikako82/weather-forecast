@@ -29,10 +29,11 @@
         const day = time.getDay();
         const hour = time.getHours();
         const hoursIn12Hr = hour >= 13 ? hour %12: hour;
-        const minutes = time.getMinutes();
+        const hours = hoursIn12Hr.toString().padStart(2,'0');
+        const minutes = time.getMinutes().toString().padStart(2, '0');;
         const ampm = hour >=12 ? 'PM' : 'AM';
 
-        timeEl.innerHTML = hoursIn12Hr + ':' + minutes + '' + `<span id="am-pm">${ampm}</span>`;
+        timeEl.innerHTML = hours + ':' + minutes + '' + `<span id="am-pm">${ampm}</span>`;
         dateEl.innerHTML = days[day] + ', ' + date + ' ' + months[month];
     }, 1000);
 
