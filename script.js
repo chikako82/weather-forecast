@@ -19,26 +19,34 @@
         [{city:"Mindelo", lat:16.89, long:-24.98},{city:"Praia", lat:14.93, long:-23.51},{city:"São Filipe", lat:14.90, long:-24.50}],
         [{city:"Lisboa", lat:38.72, long:-9.13},{city:"Porto", lat:41.15, long:-8.61}],
     ];
-
-    // const API_KEY = '20b61881c1ab6a770f7efc2d90536cbf';
-    // 画面中央、時間、日にちの値を取得
-    setInterval(() => {
-        const time = new Date();
-        const month = time.getMonth();
-        const date = time.getDate();
-        const day = time.getDay();
-        const hour = time.getHours();
-        const hoursIn12Hr = hour >= 13 ? hour %12: hour;
-        const hours = hoursIn12Hr.toString().padStart(2,'0');
-        const minutes = time.getMinutes().toString().padStart(2, '0');;
-        const ampm = hour >=12 ? 'PM' : 'AM';
-
-        timeEl.innerHTML = hours + ':' + minutes + '' + `<span id="am-pm">${ampm}</span>`;
-        dateEl.innerHTML = days[day] + ', ' + date + ' ' + months[month];
-    }, 1000);
-
+    var timezoneList = [
+        'Asia/Tokyo',  // 東京（日本）
+        'Europe/London',  // ロンドン（イギリス）
+        'Atlantic/Cape_Verde', // Cabo Verde
+        'Europe/Lisbon', // ポルトガル（リスボン）
+    ];
+    
     // 国、都市が選択されたときの処理
     countrySelect.addEventListener('change', function() {
+        // 画面中央、時間、日にちの値を取得
+        setInterval(() => {
+            if(this.value == "") return;
+            var timezone = timezoneList[this.value];
+            const time = new Date().toLocaleString('en-US', { timeZone: timezone });
+            const timeOfLocal = new Date(time);
+            const month = timeOfLocal.getMonth();
+            const date = timeOfLocal.getDate();
+            const day = timeOfLocal.getDay();
+            const hour = timeOfLocal.getHours();
+            const hoursIn12Hr = hour >= 13 ? hour %12: hour;
+            const hours = hoursIn12Hr.toString().padStart(2,'0');
+            const minutes = timeOfLocal.getMinutes().toString().padStart(2, '0');;
+            const ampm = hour >=12 ? 'PM' : 'AM';
+
+            timeEl.innerHTML = hours + ':' + minutes + '' + `<span id="am-pm">${ampm}</span>`;
+            dateEl.innerHTML = days[day] + ', ' + date + ' ' + months[month];
+        }, 1000);
+
         cirySelect.innerHTML = "";
         if(this.value == "") return;
         var list = ciryList[this.value];
@@ -135,36 +143,34 @@
                         $('#current-temp').html(todaysWeather);
 
                         
-                        const weeklyWeather = `
-                            <div class="weather-forecast-item">
-                                <div class="day">${time[1]}</div>
-                                <img src="http://openweathermap.org/img/wn/${weathercodeNumber(weathercode[1])}@2x.png" alt="weather icon" class="w-icon">
-                                <div class="temp">${temperature_max[1]}&#176; C / ${temperature_min[1]}&#176; C</div>
-                            </div>
-                            <div class="weather-forecast-item">
-                                <div class="day">${time[2]}</div>
-                                <img src="http://openweathermap.org/img/wn/${weathercodeNumber(weathercode[2])}@2x.png" alt="weather icon" class="w-icon">
-                                <div class="temp">${temperature_max[2]}&#176; C / ${temperature_min[2]}&#176; C</div>
-                            </div>
-                            <div class="weather-forecast-item">
-                                <div class="day">${time[3]}</div>
-                                <img src="http://openweathermap.org/img/wn/${weathercodeNumber(weathercode[3])}@2x.png" alt="weather icon" class="w-icon">
-                                <div class="temp">${temperature_max[3]}&#176; C / ${temperature_min[3]}&#176; C</div>
-                            </div>
-                            <div class="weather-forecast-item">
-                                <div class="day">${time[4]}</div>
-                                <img src="http://openweathermap.org/img/wn/${weathercodeNumber(weathercode[4])}@2x.png" alt="weather icon" class="w-icon">
-                                <div class="temp">${temperature_max[4]}&#176; C / ${temperature_min[4]}&#176; C</div>
-                            </div>
-                            <div class="weather-forecast-item">
-                                <div class="day">${time[5]}</div>
-                                <img src="http://openweathermap.org/img/wn/${weathercodeNumber(weathercode[5])}@2x.png" alt="weather icon" class="w-icon">
-                                <div class="temp">${temperature_max[5]}&#176; C / ${temperature_min[5]}&#176; C</div>
-                            </div>
-                        `;
-                        $('#weather-forecast').html(weeklyWeather);
-                    
-                        
+                         const weeklyWeather = `
+                             <div class="weather-forecast-item">
+                                 <div class="day">${time[1]}</div>
+                                 <img src="http://openweathermap.org/img/wn/${weathercodeNumber(weathercode[1])}@2x.png" alt="weather icon" class="w-icon">
+                                 <div class="temp">${temperature_max[1]}&#176; C / ${temperature_min[1]}&#176; C</div>
+                             </div>
+                             <div class="weather-forecast-item">
+                                 <div class="day">${time[2]}</div>
+                                 <img src="http://openweathermap.org/img/wn/${weathercodeNumber(weathercode[2])}@2x.png" alt="weather icon" class="w-icon">
+                                 <div class="temp">${temperature_max[2]}&#176; C / ${temperature_min[2]}&#176; C</div>
+                             </div>
+                             <div class="weather-forecast-item">
+                                 <div class="day">${time[3]}</div>
+                                 <img src="http://openweathermap.org/img/wn/${weathercodeNumber(weathercode[3])}@2x.png" alt="weather icon" class="w-icon">
+                                 <div class="temp">${temperature_max[3]}&#176; C / ${temperature_min[3]}&#176; C</div>
+                             </div>
+                             <div class="weather-forecast-item">
+                                 <div class="day">${time[4]}</div>
+                                 <img src="http://openweathermap.org/img/wn/${weathercodeNumber(weathercode[4])}@2x.png" alt="weather icon" class="w-icon">
+                                 <div class="temp">${temperature_max[4]}&#176; C / ${temperature_min[4]}&#176; C</div>
+                             </div>
+                             <div class="weather-forecast-item">
+                                 <div class="day">${time[5]}</div>
+                                 <img src="http://openweathermap.org/img/wn/${weathercodeNumber(weathercode[5])}@2x.png" alt="weather icon" class="w-icon">
+                                 <div class="temp">${temperature_max[5]}&#176; C / ${temperature_min[5]}&#176; C</div>
+                             </div>
+                         `;
+                         $('#weather-forecast').html(weeklyWeather);
                     })
                     
 
