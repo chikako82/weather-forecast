@@ -14,8 +14,8 @@
     const countrySelect = document.getElementById('country');
     const cirySelect = document.getElementById('city');
     var ciryList = [
-        [{city:"Hokkaido", lat:43.43, long:142.93, timezone:"Asia%2FTokyo"},{city:"Tokyo", lat:35.69, long:139.69, timezone:"Asia%2FTokyo"},{city:"Nagoya", lat:35.18, long:136.91, timezone:"Asia%2FTokyo"},{city:"Ritto,Shiga", lat:35.03, long:136.00, timezone:"Asia%2FTokyo"},{city:"Osaka", lat:34.69, long:135.50, timezone:"Asia%2FTokyo"},{city:"Okinawa", lat:26.54, long:127.97, timezone:"Asia%2FTokyo"}],
-        [{city:"London", lat:51.51, long:-0.13, timezone:"Europe%2FLondon"},{city:"Southampton", lat:50.90, long:-1.40, timezone:"Europe%2FLondon"},{city:"Manchester", lat:53.48, long:-2.24, timezone:"Europe%2FLondon"},{city:"Liverpool", lat:53.41, long:-2.98, timezone:"Europe%2FLondon"}],
+        [{city:"Hokkaido", lat:43.43, long:142.93},{city:"Tokyo", lat:35.69, long:139.69},{city:"Nagoya", lat:35.18, long:136.91},{city:"Osaka", lat:34.69, long:135.50},{city:"Okinawa", lat:26.54, long:127.97}],
+        [{city:"London", lat:51.51, long:-0.13},{city:"Southampton", lat:50.90, long:-1.40},{city:"Manchester", lat:53.48, long:-2.24},{city:"Liverpool", lat:53.41, long:-2.98}],
         [{city:"Mindelo", lat:16.89, long:-24.98},{city:"Praia", lat:14.93, long:-23.51},{city:"São Filipe", lat:14.90, long:-24.50}],
         [{city:"Lisboa", lat:38.72, long:-9.13},{city:"Porto", lat:41.15, long:-8.61}],
     ];
@@ -25,7 +25,7 @@
         'Atlantic/Cape_Verde', // Cabo Verde
         'Europe/Lisbon', // ポルトガル（リスボン）
     ];
-    
+
     // 国、都市が選択されたときの処理
     countrySelect.addEventListener('change', function() {
         // 画面中央、時間、日にちの値を取得
