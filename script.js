@@ -3,7 +3,7 @@
     const timeEl = document.getElementById('time');
     const dateEl = document.getElementById('date');
     const currentWeatherItemsEl = document.getElementById('current-weather-items');
-    const country = document.getElementById('country');
+    // const country = document.getElementById('country');
     // const cityEl = document.getElementById('city');
     const weatherForecastEl = document.getElementById('weather-forecast');
     const currentTempEl = document.getElementById('current-temp');
@@ -25,27 +25,48 @@
         'Atlantic/Cape_Verde', // Cabo Verde
         'Europe/Lisbon', // ポルトガル（リスボン）
     ];
-
-    // 国、都市が選択されたときの処理
-    countrySelect.addEventListener('change', function() {
-        // 画面中央、時間、日にちの値を取得
-        setInterval(() => {
-            if(this.value == "") return;
-            var timezone = timezoneList[this.value];
-            const time = new Date().toLocaleString('en-US', { timeZone: timezone });
-            const timeOfLocal = new Date(time);
-            const month = timeOfLocal.getMonth();
-            const date = timeOfLocal.getDate();
-            const day = timeOfLocal.getDay();
-            const hour = timeOfLocal.getHours();
+    
+    window.addEventListener("DOMContentLoaded", function() {
+        
+        function showTime() {
+            const time = new Date();
+            const month = time.getMonth();
+            const date = time.getDate();
+            const day = time.getDay();
+            const hour = time.getHours();
             const hoursIn12Hr = hour >= 13 ? hour %12: hour;
             const hours = hoursIn12Hr.toString().padStart(2,'0');
-            const minutes = timeOfLocal.getMinutes().toString().padStart(2, '0');;
+            const minutes = time.getMinutes().toString().padStart(2, '0');;
             const ampm = hour >=12 ? 'PM' : 'AM';
 
             timeEl.innerHTML = hours + ':' + minutes + '' + `<span id="am-pm">${ampm}</span>`;
             dateEl.innerHTML = days[day] + ', ' + date + ' ' + months[month];
-        }, 1000);
+          }
+          
+          const defaultTime = setInterval(showTime, 1000);
+    
+    // 国、都市が選択されたときの処理
+    countrySelect.addEventListener('change', function() {
+        // 画面中央、時間、日にちの値を取得
+        clearInterval(defaultTime);
+
+        setInterval(() => {
+            if(this.value == "") defaultTime;
+             var timezone = timezoneList[this.value];
+             const time = new Date().toLocaleString('en-US', { timeZone: timezone });
+             const timeOfLocal = new Date(time);
+             const month = timeOfLocal.getMonth();
+             const date = timeOfLocal.getDate();
+             const day = timeOfLocal.getDay();
+             const hour = timeOfLocal.getHours();
+             const hoursIn12Hr = hour >= 13 ? hour %12: hour;
+             const hours = hoursIn12Hr.toString().padStart(2,'0');
+             const minutes = timeOfLocal.getMinutes().toString().padStart(2, '0');;
+             const ampm = hour >=12 ? 'PM' : 'AM';
+
+             timeEl.innerHTML = hours + ':' + minutes + '' + `<span id="am-pm">${ampm}</span>`;
+             dateEl.innerHTML = days[day] + ', ' + date + ' ' + months[month];
+         }, 1000);
 
         cirySelect.innerHTML = "";
         if(this.value == "") return;
@@ -172,29 +193,8 @@
                          `;
                          $('#weather-forecast').html(weeklyWeather);
                     })
-                    
-
-                    
-                    
-                    
                 } 
             }
-
-
-
         })
     })
-
-    // getWeatherData();
-    // function getWeatherData() {
-    //     navigator.geolocation.getCurrentPosition((success) => {
-    //         let {latitude, longitude} = success.coords;
-    //         fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&appid=${API_KEY}`)
-    //         .then(res => res.json()).then(data => {
-    //             console.log(data);
-    //             showWeatherData(data);
-    //         })
-    //     })
-    // }
-
-    // function showWeatherData(data)
+})
