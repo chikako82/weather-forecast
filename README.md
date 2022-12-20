@@ -14,6 +14,9 @@ Weather forecast
 
 ![スクリーンショット 2022-12-19 17 36 29](https://user-images.githubusercontent.com/105035124/208384316-6dd52a20-0015-4576-98f0-b90492f9fe40.png)
 
+## Webサイト
+[Webサイトを見る](https://weather-forecast-chika.herokuapp.com/)
+
 ## 利用している技術
 
 HTML / CSS / JavaScript / jQuery / Bootstrap
